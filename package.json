@@ -9,12 +9,13 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "start": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir build --target node",
-    "build:http": "bun build src/server/http-server.ts --outdir build --target node",
-    "dev": "bun --watch src/server/http-server.ts",
-    "start:http": "bun run src/server/http-server.ts",
-    "dev:http": "bun --watch src/server/http-server.ts",
+    "start": "node dist/index.js",
+    "dev": "ts-node --esm src/index.ts",
+    "build": "tsc --build",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "test": "echo \"No tests specified\" && exit 0",
+    "start:local": "bun run src/index.ts",
     "mobile": "bun run src/server/mobile-api.ts",
     "dev:mobile": "bun --watch src/server/mobile-api.ts"
   },
@@ -22,7 +23,10 @@
     "@types/bun": "latest",
     "@types/cors": "^2.8.17",
     "@types/node": "^20.11.0",
-    "@types/node-fetch": "^2.6.12"
+    "@types/node-fetch": "^2.6.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "rimraf": "^5.0.5"
   },
   "peerDependencies": {
     "@valibot/to-json-schema": "^1.0.0",

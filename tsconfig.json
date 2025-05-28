@@ -9,8 +9,21 @@
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/index.ts",
+    "src/tools/**/*",
+    "src/core/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/server/mobile-api.ts",
+    "src/server/http-server.ts",
+    "**/*.test.ts",
+    "test-*.js"
+  ]
 }

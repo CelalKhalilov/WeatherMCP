@@ -1,0 +1,1 @@
+{"root":["../src/index.ts","../src/tools/weather.ts","../src/core/prompts.ts","../src/core/resources.ts","../src/core/tools.ts","../src/core/services/greeting-service.ts","../src/core/services/index.ts"],"version":"5.8.3"}

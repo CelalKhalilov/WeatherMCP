@@ -1,0 +1,87 @@
+name: openweather-mcp-server
+version: 1.0.0
+description: OpenWeatherMap MCP Server for real-time weather data
+
+# Build configuration
+build:
+  # Use Node.js 18
+  runtime: nodejs18
+  
+  # Build commands
+  install: npm ci
+  build: npx tsc --build
+  
+  # Start command for MCP stdio server
+  start: node dist/index.js
+  
+  # Health check
+  healthcheck:
+    command: echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | node dist/index.js
+    interval: 30s
+    timeout: 10s
+    retries: 3
+
+# Environment variables
+environment:
+  NODE_ENV: production
+  OPENWEATHER_API_KEY:
+    required: true
+    description: "OpenWeatherMap API key for weather data"
+
+# MCP Server configuration
+mcp:
+  # Server metadata
+  name: "OpenWeather MCP Server"
+  version: "1.0.0"
+  description: "Provides real-time weather data using OpenWeatherMap API"
+  
+  # Transport type
+  transport: stdio
+  
+  # Server capabilities
+  capabilities:
+    tools: true
+    resources: false
+    prompts: false
+  
+  # Available tools
+  tools:
+    - name: getWeather
+      description: "Get current weather data for given coordinates"
+      parameters:
+        type: object
+        properties:
+          latitude:
+            type: number
+            minimum: -90
+            maximum: 90
+            description: "Latitude coordinate"
+          longitude:
+            type: number
+            minimum: -180
+            maximum: 180
+            description: "Longitude coordinate"
+        required: ["latitude", "longitude"]
+
+# Resource limits
+resources:
+  memory: 256Mi
+  cpu: 0.5
+
+# Networking (stdio doesn't need ports but good to specify)
+networking:
+  ports: []
+
+# Logging
+logging:
+  level: info
+  format: json
+
+# Monitoring
+monitoring:
+  enabled: true
+  metrics:
+    - cpu_usage
+    - memory_usage
+    - request_count
+    - response_time
