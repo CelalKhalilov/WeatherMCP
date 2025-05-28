@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import fetch from 'node-fetch';
 
-// OpenWeatherMap API Key
-const OPENWEATHER_API_KEY = 'ddb572ea8e850f6cdbb234f8bc17a9fc';
+// OpenWeatherMap API Key - Environment variable'dan al, yoksa default kullan
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY || 'ddb572ea8e850f6cdbb234f8bc17a9fc';
 
 // Type definitions for OpenWeatherMap Current Weather API response
 interface OpenWeatherResponse {

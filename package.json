@@ -1,10 +1,13 @@
 {
-  "name": "mcp-server",
+  "name": "openweather-mcp-server",
   "module": "src/index.ts",
   "type": "module",
   "version": "1.0.0",
-  "description": "Model Context Protocol (MCP) Server",
-  "private": true,
+  "description": "OpenWeatherMap MCP Server - Provides real-time weather data using OpenWeatherMap API",
+  "main": "src/index.ts",
+  "keywords": ["mcp", "weather", "openweathermap", "api", "climate"],
+  "author": "Your Name",
+  "license": "MIT",
   "scripts": {
     "start": "bun run src/index.ts",
     "build": "bun build src/index.ts --outdir build --target node",

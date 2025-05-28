@@ -1,0 +1,71 @@
+name: openweather-mcp-server
+version: 1.0.0
+description: OpenWeatherMap MCP Server - Gerçek zamanlı hava durumu verileri
+
+# MCP Server Configuration
+mcp:
+  name: "OpenWeather MCP Server"
+  version: "1.0.0"
+  description: "OpenWeatherMap API kullanarak detaylı hava durumu bilgileri sağlar"
+  
+  # Server entry point
+  main: "src/index.ts"
+  
+  # Runtime configuration
+  runtime:
+    node_version: "18"
+    package_manager: "npm"
+    
+  # Environment variables
+  environment:
+    - name: OPENWEATHER_API_KEY
+      description: "OpenWeatherMap API anahtarı"
+      required: true
+      type: "secret"
+      
+  # Build configuration
+  build:
+    install_command: "npm install"
+    build_command: "npm run build"
+    start_command: "npm start"
+    
+  # Health check
+  health_check:
+    enabled: true
+    timeout: 30
+    
+  # Resource limits
+  resources:
+    memory: "256MB"
+    cpu: "0.5"
+    
+# Tools configuration
+tools:
+  - name: "getWeather"
+    description: "Koordinatlara göre hava durumu bilgilerini alır"
+    parameters:
+      latitude:
+        type: "number"
+        description: "Enlem koordinatı"
+        minimum: -90
+        maximum: 90
+        required: true
+      longitude:
+        type: "number" 
+        description: "Boylam koordinatı"
+        minimum: -180
+        maximum: 180
+        required: true
+        
+# Categories and tags
+categories:
+  - "weather"
+  - "api"
+  - "data"
+  
+tags:
+  - "openweathermap"
+  - "weather"
+  - "climate"
+  - "temperature"
+  - "meteorology"
