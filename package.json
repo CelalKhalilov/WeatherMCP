@@ -1,0 +1,37 @@
+{
+  "name": "mcp-server",
+  "module": "src/index.ts",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) Server",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir build --target node",
+    "build:http": "bun build src/server/http-server.ts --outdir build --target node",
+    "dev": "bun --watch src/server/http-server.ts",
+    "start:http": "bun run src/server/http-server.ts",
+    "dev:http": "bun --watch src/server/http-server.ts",
+    "mobile": "bun run src/server/mobile-api.ts",
+    "dev:mobile": "bun --watch src/server/mobile-api.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.11.0",
+    "@types/node-fetch": "^2.6.12"
+  },
+  "peerDependencies": {
+    "@valibot/to-json-schema": "^1.0.0",
+    "effect": "^3.14.4",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fastmcp": "^1.21.0",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.24.2"
+  }
+}
